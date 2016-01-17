@@ -1,15 +1,31 @@
 var view = require('cli-view-utils');
 var request = require('request');
 var Q = require('q');
+var gameAliases = {
+    'hots': 'Heroes of the Storm',
+    'hs': 'Hearthstone: Heroes of Warcraft',
+    'lol': 'League of Legends',
+    'cs': 'Counter-Strike: Global Offensive',
+    'dota': 'Dota 2'
+};
 
-module.exports = function getUrlToStream(searchParams) {
+module.exports.getUrlToStream = function getUrlToStream(searchParams) {
     var deferred = Q.defer();
     searchStreams(searchParams)
         .then(listStreams)
         .then(selectStream)
-        .then(deferred.resolve);
+        .then(function(stream) {
+            deferred.resolve(stream.channel.url);
+        });
     return deferred.promise;
-}
+};
+
+module.exports.gameAliases = function games() {
+    for (var alias in gameAliases) {
+        view.renderMessage(view.colors.yellow(alias) + ' for ' + view.colors.green(gameAliases[alias]));
+    }
+    view.renderMessage('You can pass any ' + view.colors.yellow('alias') + ' to the --game option.');
+};
 
 function searchStreams(searchParams) {
     var deferred = Q.defer();
@@ -35,13 +51,6 @@ function normalizeSearchParams(searchParams) {
             params[prop] = searchParams[prop];
         }
     });
-    var gameAliases = {
-        'hots': 'Heroes of the Storm',
-        'hs': 'Hearthstone: Heroes of Warcraft',
-        'lol': 'League of Legends',
-        'cs': 'Counter-Strike: Global Offensive',
-        'dota': 'Dota 2'
-    };
     if (searchParams.game && gameAliases[searchParams.game]) {
         params.game = gameAliases[searchParams.game];
     }

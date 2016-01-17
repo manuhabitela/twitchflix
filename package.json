@@ -1,0 +1,21 @@
+{
+  "name": "twitchflix",
+  "version": "0.0.1",
+  "description": "A cli app to look for twitch channels and watch them in your favorite player",
+  "main": "index.js",
+  "repository": "Leimi/twitchflix",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emmanuel Pelletier",
+  "license": "MIT",
+  "bin": {
+    "twitchflix": "bin/twitchflix"
+  },
+  "dependencies": {
+    "lodash.defaults": "^3.1.2",
+    "minimist": "^1.1.2",
+    "q": "^1.4.1",
+    "cli-view-utils": "Leimi/cli-view-utils"
+  }
+}

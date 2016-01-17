@@ -1,5 +1,5 @@
-var view = require('cli-view-utils');
 var minimist = require('minimist');
+var getStream = require('./src/twitch.js');
 
 var args = normalizeArgs();
 
@@ -22,12 +22,14 @@ function help() {
 }
 
 function start(options) {
+    getStream(options).then(function(url) {
+        console.log(url);
+    });
 }
 
 function normalizeArgs() {
     var args = minimist(process.argv.slice(2), {
-        alias: { c: 'count', g: 'game' },
-        default: { count: 20 },
+        alias: { l: 'limit', g: 'game', o: 'offset', c: 'channel' },
         '--': true
     });
     return args;

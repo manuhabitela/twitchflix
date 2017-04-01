@@ -6,7 +6,8 @@ var gameAliases = {
     'hs': 'Hearthstone: Heroes of Warcraft',
     'lol': 'League of Legends',
     'cs': 'Counter-Strike: Global Offensive',
-    'dota': 'Dota 2'
+    'dota': 'Dota 2',
+    'ow': 'Overwatch'
 };
 
 module.exports.getUrlToStream = function getUrlToStream(searchParams) {

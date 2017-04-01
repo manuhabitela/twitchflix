@@ -1,6 +1,6 @@
 # `twitchflix`
 
-`twitchflix` is a command-line application to look for popular streams from twitch and watch them instantly thanks to [livestreamer](http://docs.livestreamer.io/).
+`twitchflix` is a command-line application to look for popular streams from twitch and watch them instantly thanks to [streamlink](https://streamlink.github.io).
 
 This was made to be able to watch twitch streams from a raspberry pi in tty only via omxplayer. *Didn't test this on the raspberry pi yet*.
 
@@ -20,9 +20,9 @@ Start using twitchflix with the `twitchflix` command!
 All the help you need is visible with `twitchflix --help`:
 
 ```
-Search streams from twitch, watch them directly thanks to livestreamer.
+Search streams from twitch, watch them directly thanks to streamlink.
 
-Usage: twitchflix [OPTIONS] [-- LIVESTREAMER OPTIONS]
+Usage: twitchflix [OPTIONS] [-- STREAMLINK OPTIONS]
 
 Options:
   -h, --help: show this message
@@ -33,9 +33,9 @@ Options:
              an alias can be passed to the --game option instead of the full game name
   -l, --limit: limit the number of streams to choose from. Defaults to 25.
 
-All params typed after -- are passed to livestreamer.
-By default, the livestreamer `--default-stream best` option is passed.
-Check out the livestreamer doc for more details on possible options.
+All params typed after -- are passed to streamlink.
+By default, the streamlink `--default-stream best` option is passed.
+Check out the streamlink doc for more details on possible options.
 
 Examples:
   `twitchflix --game "Mount Your Friends"` # list only mount your friends streams
@@ -45,4 +45,4 @@ Examples:
   `twitchflix -- -np 'omxplayer -o hdmi'` # play in omx with custom omx options
 ```
 
-As twitchflix allows you to pass all the options you want to livestreamer without enforcing any defaults, or doesn't have any config file, it can be cumbersome to type the command. [Don't forget about aliases](http://raspberrypi.stackexchange.com/a/4285) :)
+As twitchflix allows you to pass all the options you want to streamlink without enforcing any defaults, or doesn't have any config file, it can be cumbersome to type the command. [Don't forget about aliases](http://raspberrypi.stackexchange.com/a/4285) :)

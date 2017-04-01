@@ -1,7 +1,7 @@
 var view = require('cli-view-utils');
 var minimist = require('minimist');
 var twitch = require('./src/twitch.js');
-var playStream = require('./src/livestreamer.js');
+var playStream = require('./src/streamlink.js');
 
 var args = normalizeArgs();
 
@@ -25,9 +25,9 @@ function version() {
 
 function help() {
     return [
-        'Search streams from twitch, watch them directly thanks to livestreamer.',
+        'Search streams from twitch, watch them directly thanks to streamlink.',
         '',
-        'Usage: twitchflix [OPTIONS] [-- LIVESTREAMER OPTIONS]',
+        'Usage: twitchflix [OPTIONS] [-- STREAMLINK OPTIONS]',
         '',
         'Options:',
         '  -h, --help: show this message',
@@ -38,9 +38,9 @@ function help() {
         '             an alias can be passed to the --game option instead of the full game name',
         '  -l, --limit: limit the number of streams to choose from. Defaults to 25.',
         '',
-        'All params typed after -- are passed to livestreamer.',
-        'By default, the livestreamer `--default-stream best` option is passed.',
-        'Check out the livestreamer doc for more details on possible options.',
+        'All params typed after -- are passed to streamlink.',
+        'By default, the streamlink `--default-stream best` option is passed.',
+        'Check out the streamlink doc for more details on possible options.',
         '',
         'Examples:',
         '  `twitchflix --game "Mount Your Friends"` # list only mount your friends streams',
@@ -53,7 +53,7 @@ function help() {
 
 function start(options) {
     twitch.getUrlToStream(options).then(function(url) {
-        playStream(url, options.livestreamer);
+        playStream(url, options.streamlink);
     });
 }
 
@@ -62,9 +62,9 @@ function normalizeArgs() {
         alias: { h: 'help', v: 'version', l: 'limit', g: 'game', o: 'offset', c: 'channel' },
         '--': true
     });
-    args.livestreamer = args['--'];
-    if (args.livestreamer.indexOf('--default-stream') === -1) {
-        args.livestreamer.push('--default-stream', 'best');
+    args.streamlink = args['--'];
+    if (args.streamlink.indexOf('--default-stream') === -1) {
+        args.streamlink.push('--default-stream', 'best');
     }
     return args;
 }

@@ -1,6 +1,6 @@
 {
   "name": "twitchflix",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A cli app to look for twitch channels and watch them in your favorite player",
   "main": "index.js",
   "repository": "Leimi/twitchflix",

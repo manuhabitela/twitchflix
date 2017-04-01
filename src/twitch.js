@@ -33,7 +33,11 @@ function searchStreams(searchParams) {
     request({
         qs: normalizeSearchParams(searchParams),
         json: true,
-        url: "https://api.twitch.tv/kraken/streams"
+        url: 'https://api.twitch.tv/kraken/streams',
+        headers: {
+            'Client-ID': 'axxj92ty0xbi1pvj1ksga3ca7ehiff',
+            'Accept': 'application/vnd.twitchtv.v5+json'
+        }
     }, function(err, response, data) {
         deferred.resolve(data.streams);
     });

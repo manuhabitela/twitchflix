@@ -63,7 +63,7 @@ function normalizeSearchParams(searchParams) {
 }
 
 function listStreams(streams) {
-    view.renderList(streams, renderStreamLine);
+    view.renderTable(streams, {head: ['Channel', 'Game', 'Viewers']}, renderStreamLine);
     return streams;
 }
 
@@ -71,7 +71,7 @@ function renderStreamLine(stream) {
     var channel = view.colors.yellow.bold(stream.channel.name);
     var viewers = view.colors.cyan(stream.viewers + ' viewers');
     var game = view.colors.green(stream.game);
-    return [channel, viewers, game].join( view.colors.gray(" - ") );
+    return [channel, game, viewers];
 }
 
 function selectStream(streams) {
